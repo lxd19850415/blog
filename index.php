@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>朝闻道-主页</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
