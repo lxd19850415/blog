@@ -33,61 +33,29 @@
   	<article>
 
 
-      <% if (success) {%>
-      <div><%= success  %></div>
-      <% } %>
-      <% if (error) {%>
-      <div><%= error %></div>
-      <% } %>
 
+<?php   
+  $myServer= 'localhost'; //主机  
+  $myUser= 'root'; //用户名  
+  $myPass= 'root'; //密码  
+  $myDB= 'blog'; //库名  
 
-<? php   
-  $myServer = localhost; //主机  
-  $myUser = 'root'; //用户名  
-  $myPass = 'root'; //密码  
-  $myDB = 'blog'; //MSSQL库名  
+  $dsn = "mysql:host=localhost;dbname=".$myDB;
+  $db = new PDO($dsn, $myUser, $myPass);
+  // 从表中提取信息的sql语句
+  $strsql="SELECT * FROM article";
+  $db->query("SET NAMES utf8");
+  $rs = $db->query($strsql);
+  while($row = $rs->fetch()){
+    echo '<p><h2><a href="#">'.$row['title'].'</a></h2></p>';
+    echo '<p class="info">';
+      echo '作者：<a href="#">'.$row['author'].'</a>|' ;  
+      echo '日期：'. $row['updatetime'];
+    echo '</p>';
+    echo '<p>'.$row['content'].'</p>';
+  }
 
-  // 连接到数据库
-    $conn=mysql_connect($mysql_server_name, $mysql_username,
-                        $mysql_password);
-                        
-     // 从表中提取信息的sql语句
-    $strsql="SELECT * FROM 'article'";
-    // 执行sql查询
-    $result=mysql_db_query($mysql_database, $strsql, $conn);
-    // 获取查询结果
-    //$row=mysql_fetch_row($result);
-
-  while ($row=mysql_fetch_row($result))
-  {
-    echo "<tr></b>";
-    for ($i=0; $i<mysql_num_fields($result); $i++ )
-    {
-      echo '<td bgcolor="#00FF00">';
-      echo $row[$i];
-      echo '</td>';
-    }
-
-
-?>  
-
-
-
-
-<% posts.forEach(function (post, index) { %>
-
-  <p><h2><a href="#"><%= post.title %></a></h2></p>
-
-  <p class="info">
-
-    作者：<a href="#"><%= post.name %></a> |  
-    日期：<%= post.time.minute %>
-
-  </p>
-
-  <p><%- post.post %></p>
-
-<% }) %>
+?>
 
   	</article>
 </div>
