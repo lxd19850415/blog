@@ -18,7 +18,7 @@
         <?php 
           if(isset($_COOKIE[session_name()]))
           {
-            echo "<div class='nav_'><a class='nav_a' title='发表' href='/blog/post.php'>发表</a></div>";
+            echo "<div class='nav_'><a class='nav_a' title='发表' href='/blog/post_form.php'>发表</a></div>";
           }
         ?>
 

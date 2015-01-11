@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>朝闻道-登录</title>
+    <title><%= title %></title>
     <link rel='stylesheet' href='/blog/stylesheets/style.css' />
   </head>
   <body>
    
   	<header>
   		<!-- <h1><%= title%></h1>-->
-  		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   	</header>
 
   	<div class="navbg">
       <div class="navbg2">
-    		<div class="nav_"><a class="nav_a" title="主页" href="/blog/index.php">主页</a></div>
+        <div class="nav_"><a class="nav_a" title="主页" href="/blog/index.php">主页</a></div>
         <div class="nav_"><a class="nav_a" title="搜索" href="/">搜索</a></div>
         <div class="nav_"><a class="nav_a" title="最热" href="/">热点</a></div>
 
-      <?php 
-          if(isset($_SESSION['username']))
+       <?php 
+          if(isset($_COOKIE[session_name()]))
           {
             echo "<div class='nav_'><a class='nav_a' title='发表' href='/blog/post_form.php'>发表</a></div>";
           }
@@ -27,7 +26,7 @@
       </div>
 
       <?php 
-        if(isset($_SESSION['username']))
+        if(isset($_COOKIE[session_name()]))
         {
           echo " <div class='l'><a title='登出' href='/blog/logout.php'>登出</a></div>";
         }
@@ -42,8 +41,6 @@
     <div class="center">
   	<article>
 
-
-
 <script type="text/javascript">
 
 function isNull( str ){ 
@@ -57,12 +54,12 @@ function isNull( str ){
 } 
 
 function checkPost(){ 
-	var form1 = window.document.getElementById("formLogin");//获取form1对象
-	var name1 = window.document.getElementById("name_").value;//获取form1对象
-	var password1 = window.document.getElementById("password_").value;//获取form1对象
-	if ( isNull(name1 ) || isNull(password1 ) )
+	var form1 = window.document.getElementById("formPost");//获取form1对象
+	var title1 = window.document.getElementById("title_").value;//获取form1对象
+	var postEdit1 = window.document.getElementById("postEdit_").value;//获取form1对象
+	if ( isNull(title1 ) || isNull(postEdit1 ) )
 	{
-		alert("用户名或密码不能为空！");
+		alert("标题或内容不能为空！");
 	} 
 	else
 	{
@@ -72,23 +69,22 @@ function checkPost(){
 
 </script>
 
-<form method="post" action="login.php" id="formLogin">
+<form method="post" action="post.php" id="formPost">
+
 	<div class="loginAccountTitle">
-		用户名：
+		标题：
 	</div>
-	<div class="aaa">
-		<input type="text" name="name" id="name_" size="36"  class="loginAccountEdit" width="200px" onmouseover="this.style.borderColor='black';this.style.backgroundColor='plum'" onmouseout="this.style.borderColor='black';this.style.backgroundColor='#ffffff'" />
+
+	<input type="text" name="title" size="36" id="title_"  class="loginAccountEdit" width="200px" onmouseover="this.style.borderColor='black';this.style.backgroundColor='plum'" onmouseout="this.style.borderColor='black';this.style.backgroundColor='#ffffff'" />
+  <div class="loginAccountTitle">
+		正文：
 	</div>
-	<div class="loginAccountTitle">
-		密码：
-	</div>
-	<div class="aaa">
-		<input type="password" name="password" id="password_"   class="loginAccountEdit" size="36" width="200px" onmouseover="this.style.borderColor='black';this.style.backgroundColor='plum'" onmouseout="this.style.borderColor='black';this.style.backgroundColor='#ffffff'"  />
-	</div>
-	<div>
-		<input class="submitBtn" type="button" onClick="checkPost()" value="登录">
-	</div>
+<div>
+  <textarea name="content" class="postEdit" id="postEdit_" onmouseover="this.style.borderColor='black';this.style.backgroundColor='plum'" onmouseout="this.style.borderColor='black';this.style.backgroundColor='#ffffff'"></textarea>
+</div>
+	<input class="submitBtn" type="button" onClick="checkPost()" value="发表">
 </form>
+
 
   	</article>
 </div>
