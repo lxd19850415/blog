@@ -2,32 +2,41 @@
 <html>
   <head>
     <title>注册</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/blog/stylesheets/style.css' />
   </head>
   <body>
    
   	<header>
-  		<!-- <h1><%= title%></h1>-->
+
   		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   	</header>
 
-  	<div class="navbg">
+	<div class="navbg">
       <div class="navbg2">
-    		<div class="nav_"><a class="nav_a" title="主页" href="/blog/index.php">主页</a></div>
+		<div class="nav_"><a class="nav_a" title="主页" href="/blog/index.php">主页</a></div>
         <div class="nav_"><a class="nav_a" title="搜索" href="/">搜索</a></div>
         <div class="nav_"><a class="nav_a" title="最热" href="/">热点</a></div>
-
-        <% if(user) { %>
-        <div class="nav_"><a class="nav_a" title="发表" href="/post">发表</a></div>
-        <% } %>
+        <?php 
+          if(isset($_SESSION['username']))
+          {
+            echo "<div class='nav_'><a class='nav_a' title='发表' href='/blog/post.php'>发表</a></div>";
+          }
+        ?>
 
       </div>
-      <% if(user) { %>
-      <div class="l"><a title="登出" href="/logout">登出</a></div>
-      <% } else { %>
-  		<div class="l"><a title="登录" href="/blog/login.html">登录</a></div>
-  		<div class="l"><a title="注册" href="/blog/reg.html">注册</a></div>
-      <% } %>
+
+      <?php 
+        if(isset($_SESSION['username']))
+        {
+          echo " <div class='l'><a title='登出' href='/blog/logout.php'>登出</a></div>";
+        }
+        else
+        {
+          echo " <div class='l'><a title='登录' href='/blog/login_form.php'>登录</a></div>";
+          echo " <div class='l'><a title='注册' href='/blog/reg_form.php'>注册</a></div>";
+        }
+      ?>
+
   	</div>
 
     <div class="center">
