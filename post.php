@@ -5,7 +5,7 @@ session_start();
 $title=$_POST['title'];
 $content=$_POST['content'];
 $time=date("Y-m-d H:i:s");
-$type=0;
+$type=$_POST['type'];
 if (isset($_SESSION['username'])){
 	$name=$_SESSION['username'];
 }

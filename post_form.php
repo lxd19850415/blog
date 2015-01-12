@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>发表</title>
     <link rel='stylesheet' href='/blog/stylesheets/style.css' />
   </head>
   <body>
@@ -76,6 +76,16 @@ function checkPost(){
 	</div>
 
 	<input type="text" name="title" size="36" id="title_"  class="loginAccountEdit" width="200px" onmouseover="this.style.borderColor='black';this.style.backgroundColor='plum'" onmouseout="this.style.borderColor='black';this.style.backgroundColor='#ffffff'" />
+  
+    <select name="type">
+      <option value="0" selected="">请选择类型</option>
+      <option value="1">计算机</option>
+      <option value="2">生物</option>
+      <option value="3">物理</option>
+      <option value="4">化学</option>
+      <option value="5">金融</option>
+    </select>
+
   <div class="loginAccountTitle">
 		正文：
 	</div>

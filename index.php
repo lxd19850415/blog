@@ -58,12 +58,29 @@
   while($row = $rs->fetch()){
     echo '<p><h2><a href="#">'.$row['title'].'</a></h2></p>';
     echo '<p class="info">';
-      echo '作者：<a href="#">'.$row['author'].'</a>|' ;  
-      echo '日期：'. $row['updatetime'];
+      echo '作者：<a href="#">'.$row['author'].'</a> |' ;  
+      echo ' 日期：'. $row['updatetime'].' | ' ;
+      echo ' 类型：'. convertType($row['type']) ;
     echo '</p>';
     echo '<p>'.$row['content'].'</p>';
   }
 
+function convertType($type)
+{
+  if($type=='0')
+  {
+    return '其他';
+  } 
+  else if($type=='1'){
+    return '计算机';
+  }
+  else if($type=='2'){
+    return '生物';
+  }
+  else if($type=='3'){
+    return '化学';
+  }
+}
 ?>
 
   	</article>
