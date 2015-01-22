@@ -53,7 +53,19 @@ function isNull( str ){
 	var regu = "^[ ]+$"; 
 	var re = new RegExp(regu); 
 	return re.test(str); 
-} 
+}
+
+function AntiSqlValid(str ) {
+	var sUrl=str.toLowerCase();
+	var sQuery=sUrl.substring(sUrl.indexOf("=")+1);
+
+	var re = /select|update|delete|exec|count|'|"|=|;|>|<|%/i;
+	if (re.test(sQuery)) {
+		alert("请您不要在参数中输入特殊字符和SQL关键字！"); //注意中文乱码
+		return false;
+	}
+	return true;
+}
 
 function checkPost(){ 
 	var form1 = window.document.getElementById("formSearch");//获取form1对象
@@ -64,7 +76,10 @@ function checkPost(){
 	} 
 	else
 	{
-		form1.submit();
+		if(AntiSqlValid(name1))
+		{
+			form1.submit();
+		}
 	}
 }
 
