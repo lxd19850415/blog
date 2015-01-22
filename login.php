@@ -19,7 +19,6 @@ if ($name && $passowrd){
 	$strsql = "SELECT * FROM user WHERE account = '$name' and password='$passowrd'";
 	$db->query("SET NAMES utf8");
   $rs = $db->prepare($strsql);
-
   $rs->execute();
   $num = $rs->rowCount();
 

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>朝闻道-主页</title>
+    <title>朝闻道-登录</title>
     <link rel='stylesheet' href='/blog/stylesheets/style.css' />
   </head>
   <body>
    
   	<header>
-  		<!-- <h1><%= title%></h1>-->
+  		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   	</header>
 
   	<div class="navbg">
@@ -15,8 +15,9 @@
     		<div class="nav_"><a class="nav_a" title="主页" href="/blog/index.php">主页</a></div>
         <div class="nav_"><a class="nav_a" title="搜索" href="/blog/search_form.php">搜索</a></div>
         <div class="nav_"><a class="nav_a" title="最热" href="/">热点</a></div>
-        <?php 
-          if(isset($_COOKIE[session_name()]))
+
+      <?php 
+          if(isset($_SESSION['username']))
           {
             echo "<div class='nav_'><a class='nav_a' title='发表' href='/blog/post_form.php'>发表</a></div>";
           }
@@ -25,7 +26,7 @@
       </div>
 
       <?php 
-        if(isset($_COOKIE[session_name()]))
+        if(isset($_SESSION['username']))
         {
           echo " <div class='l'><a title='登出' href='/blog/logout.php'>登出</a></div>";
         }
@@ -35,7 +36,6 @@
           echo " <div class='l'><a title='注册' href='/blog/reg_form.php'>注册</a></div>";
         }
       ?>
-
   	</div>
 
     <div class="center">
@@ -43,45 +43,44 @@
 
 
 
-<?php   
-  $myServer= 'localhost'; //主机  
-  $myUser= 'root'; //用户名  
-  $myPass= 'root'; //密码  
-  $myDB= 'blog'; //库名  
+<script type="text/javascript">
 
-  $dsn = "mysql:host=localhost;dbname=".$myDB;
-  $db = new PDO($dsn, $myUser, $myPass);
-  // 从表中提取信息的sql语句
-  $strsql="SELECT * FROM article";
-  $db->query("SET NAMES utf8");
-  $rs = $db->query($strsql);
-  while($row = $rs->fetch()){
-    echo '<p><h2><a href="#">'.$row['title'].'</a></h2></p>';
-    echo '<p class="info">';
-      echo '作者：<a href="#">'.$row['author'].'</a> |' ;  
-      echo ' 日期：'. $row['updatetime'].' | ' ;
-      echo ' 类型：'. convertType($row['type']) ;
-    echo '</p>';
-    echo '<p>'.$row['content'].'</p>';
-  }
+function isNull( str ){ 
+	if ( str == "" )
+	{
+	 	return true; 
+	}
+	var regu = "^[ ]+$"; 
+	var re = new RegExp(regu); 
+	return re.test(str); 
+} 
 
-function convertType($type)
-{
-  if($type=='0')
-  {
-    return '其他';
-  } 
-  else if($type=='1'){
-    return '计算机';
-  }
-  else if($type=='2'){
-    return '生物';
-  }
-  else if($type=='3'){
-    return '化学';
-  }
+function checkPost(){ 
+	var form1 = window.document.getElementById("formSearch");//获取form1对象
+	var name1 = window.document.getElementById("keyword_").value;//获取form1对象
+	if ( isNull(name1 ) )
+	{
+		alert("用户名或密码不能为空！");
+	} 
+	else
+	{
+		form1.submit();
+	}
 }
-?>
+
+</script>
+
+<form method="post" action="search.php" id="formSearch">
+	<div class="loginAccountTitle">
+		关键词：
+	</div>
+	<div class="aaa">
+		<input type="text" name="keyword" id="keyword_" size="36"  class="loginAccountEdit" width="200px" onmouseover="this.style.borderColor='black';this.style.backgroundColor='plum'" onmouseout="this.style.borderColor='black';this.style.backgroundColor='#ffffff'" />
+	</div>
+	<div>
+		<input class="submitBtn" type="button" onClick="checkPost()" value="搜索">
+	</div>
+</form>
 
   	</article>
 </div>
