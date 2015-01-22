@@ -13,8 +13,8 @@
   	<div class="navbg">
       <div class="navbg2">
         <div class="nav_"><a class="nav_a" title="主页" href="/blog/index.php">主页</a></div>
-        <div class="nav_"><a class="nav_a" title="搜索" href="/">搜索</a></div>
-        <div class="nav_"><a class="nav_a" title="最热" href="/">热点</a></div>
+		  <div class="nav_"><a class="nav_a" title="搜索" href="/blog/search_form.php">搜索</a></div>
+		  <div class="nav_"><a class="nav_a" title="分类" href="/blog/assort_post.php">分类</a></div>
 
        <?php 
           if(isset($_COOKIE[session_name()]))

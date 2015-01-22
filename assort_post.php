@@ -13,7 +13,7 @@
   	<div class="navbg">
       <div class="navbg2">
     		<div class="nav_"><a class="nav_a" title="主页" href="/blog/index.php">主页</a></div>
-		  <div class="nav_"><a class="nav_a" title="搜索" href="/blog/search_form.php">搜索</a></div>
+        <div class="nav_"><a class="nav_a" title="搜索" href="/blog/search_form.php">搜索</a></div>
 		  <div class="nav_"><a class="nav_a" title="分类" href="/blog/assort_post.php">分类</a></div>
 
       <?php 
@@ -45,42 +45,37 @@
 
 <script type="text/javascript">
 
-function isNull( str ){ 
-	if ( str == "" )
-	{
-	 	return true; 
-	}
-	var regu = "^[ ]+$"; 
-	var re = new RegExp(regu); 
-	return re.test(str); 
-} 
-
-function checkPost(){ 
-	var form1 = window.document.getElementById("formSearch");//获取form1对象
-	var name1 = window.document.getElementById("keyword_").value;//获取form1对象
-	if ( isNull(name1 ) )
-	{
-		alert("用户名或密码不能为空！");
-	} 
-	else
-	{
-		form1.submit();
-	}
-}
-
 </script>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
 
-<form method="post" action="search.php" id="formSearch">
-	<div class="loginAccountTitle">
-		关键词：
-	</div>
-	<div class="aaa">
-		<input type="text" name="keyword" id="keyword_" size="36"  class="loginAccountEdit" width="200px" onmouseover="this.style.borderColor='black';this.style.backgroundColor='plum'" onmouseout="this.style.borderColor='black';this.style.backgroundColor='#ffffff'" />
-	</div>
-	<div>
-		<input class="submitBtn" type="button" onClick="checkPost()" value="搜索">
-	</div>
-</form>
+		<div class="frame_1">
+			<div class="frame_1_1">
+				<div class="min"><a href="/blog/assort.php?type=1"><img src="images/index1.jpg"></a></div>
+				<div class="min"><a href="/blog/assort.php?type=2"><img src="images/index2.jpg"></a></div>
+				<div class="max"><a href="/blog/assort.php?type=3"><img src="images/index3.jpg"></a></div>
+				<div class="max"><a href="/blog/assort.php?type=4"><img src="images/index4.jpg"></a></div>
+			</div>
+			<div class="frame_1_1">
+				<div class="min"><a href="/blog/assort.php?type=4"><img src="images/index5.jpg"></a></div>
+				<div class="min"><a href="/blog/assort.php?type=4"><img src="images/index1.jpg"></a></div>
+				<div class="max"><a href="/blog/assort.php?type=4"><img src="images/index7.jpg"></a></div>
+				<div class="max"><a href="/blog/assort.php?type=4"><img src="images/index3.jpg">></a></div>
+			</div>
+			<div class="frame_1_1">
+				<div class="max"><a href="/blog/assort.php?type=4"><img src="images/index3.jpg"></a></div>
+				<div class="min"></div>
+				<div class="min"></div>
+				<div class="min"><a href="/blog/assort.php?type=4"><img src="images/index1.jpg"></a></div>
+				<div class="min"><a href="/blog/assort.php?type=4"><img src="images/index1.jpg"></a></div>
+			</div>
+			<div class="frame_1_1">
+				<div class="max"><a href="/blog/assort.php?type=4"><img src="images/index12.jpg"></a></div>
+				<div class="max"><a href="/blog/assort.php?type=4"><img src="images/index13.jpg"></a></div>
+				<div class="min"><a href="/blog/assort.php?type=4"><img src="images/index14.jpg"></a></div>
+				<div class="min"><a href="/blog/assort.php?type=4"><img src="images/index2.jpg"></a></div>
+			</div>
+		</div>
+
 
   	</article>
 </div>
