@@ -63,6 +63,7 @@
       echo ' 类型：'. convertType($row['type']) ;
     echo '</p>';
     echo '<p>'.$row['content'].'</p>';
+    echo '<hr>';
   }
 
 function convertType($type)
