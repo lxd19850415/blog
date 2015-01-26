@@ -24,7 +24,7 @@ if ($name && $passowrd){
 
 	if($num){
 		$_SESSION['username'] = $name;
-    setcookie(session_name(),session_id(),time()+60,"/");
+    	setcookie(session_name(),session_id(),time()+60,"/");
  		header("refresh:0;url=index.php");//跳转页面，注意路径
  		exit;
  	}
