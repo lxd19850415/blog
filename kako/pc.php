@@ -4,7 +4,9 @@ $currentdir=dirname(__FILE__);
 
 include_once($currentdir.'/include.list.php');
 foreach($paths as $path){
-    include_once(str_replace('/','\\',$currentdir.'/'.$path));
+    //这里需要根据不同的操作系统来修改
+//    include_once(str_replace('/','\\',$currentdir.'/'.$path));
+    include_once(str_replace('\\','/',$currentdir.'/'.$path));
 }
 
 class PC{
