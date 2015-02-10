@@ -98,9 +98,7 @@
         }
 
         function formate_article_only_type($data){
-            foreach($data as $k=>$article){
-                $data[$k]['type']=$this->convertType($data[$k]['type']);
-            }
+                $data['type']=$this->convertType($data['type']);
             return  $data;
         }
 
