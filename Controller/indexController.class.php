@@ -32,6 +32,11 @@
                 $articleModel = M('article');
                 $data = $articleModel->get_article_list();
                 VIEW::assign(array('data'=>$data));
+
+                $authobj = M('auth');
+                $isLogin=$authobj->isLogin();
+                VIEW::assign(array('isLogin'=>$isLogin));
+
                 VIEW::display('index/login.html');
             }
 
@@ -48,6 +53,11 @@
             $articleModel = M('article');
             $data = $articleModel->get_article_list();
             VIEW::assign(array('data'=>$data));
+
+            $authobj = M('auth');
+            $isLogin=$authobj->isLogin();
+            VIEW::assign(array('isLogin'=>$isLogin));
+
             VIEW::display('index/reg.html');
         }
 
