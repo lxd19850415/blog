@@ -17,7 +17,7 @@
 
             $articleModel = M('article');
             $data = $articleModel->get_article(intval($_GET['id']));
-            VIEW::assign(array('data'=>$data));
+            VIEW::assign(array('article'=>$data));
             VIEW::display('index/article.html');
         }
 

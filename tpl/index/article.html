@@ -53,7 +53,6 @@
     <div class="center">
         <article>
 
-            {foreach $data as $article}
             <p><h2><a href="/blog/index.php?controller=index&method=getOneArticle&id={$article.id}">{$article.title}</a></h2></p>
             <p class="info">
                 作者：<a href="#">{$article.author}</a> |
@@ -62,7 +61,6 @@
             </p>
             <p>{$article.content}</p>
             <hr>
-            {/foreach}
 
 
         </article>

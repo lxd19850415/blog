@@ -18,8 +18,9 @@
                 return array();
             }else{
                 $id=intval($id);
-                $sql='select * from '.$this->_table.'where id = "'.$id.'"';
-                return  DB::findOne($sql);
+                $sql='select * from '.$this->_table.' where id = "'.$id.'"';
+                $data = DB::findOne($sql);
+                return $this->formate_article_ondy_type($data);
             }
         }
 
@@ -91,6 +92,13 @@
         function formate_article($data){
             foreach($data as $k=>$article){
                 $data[$k]['content']=mb_substr(strip_tags($data[$k]['content']),0,200);
+                $data[$k]['type']=$this->convertType($data[$k]['type']);
+            }
+            return  $data;
+        }
+
+        function formate_article_only_type($data){
+            foreach($data as $k=>$article){
                 $data[$k]['type']=$this->convertType($data[$k]['type']);
             }
             return  $data;
