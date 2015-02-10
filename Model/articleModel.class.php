@@ -20,7 +20,7 @@
                 $id=intval($id);
                 $sql='select * from '.$this->_table.' where id = "'.$id.'"';
                 $data = DB::findOne($sql);
-                return $this->formate_article_ondy_type($data);
+                return $this->formate_article_only_type($data);
             }
         }
 
