@@ -24,7 +24,7 @@
             }
             ?>
          -->
-		  {if $isLogin eq 'true'}
+		  {if $loginData.isLogin eq 'true'}
 		  <div class='nav_'><a class='nav_a' title='发表' href='/blog/index.php?controller=index&method=post'>发表</a></div>
 		  {/if}
 	  </div>
@@ -41,7 +41,7 @@
         }
         ?>
          -->
-		{if $isLogin eq 'true'}
+		{if $loginData.isLogin eq 'true'}
 		<div class='l'><a title='登出' href='/blog/index.php?controller=index&method=logout'>登出</a></div>
 		{else}
 		<div class='l'><a title='登录' href='/blog/index.php?controller=index&method=login'>登录</a></div>

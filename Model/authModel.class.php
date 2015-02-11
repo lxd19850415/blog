@@ -12,8 +12,8 @@
             $password = addslashes($_POST['password']);
             $this->auth=$this->checkuser($username,$password);
             if($this->auth){
-                session_start();//启动session，必须放在第一句，否则会出错。
-                $_SESSION['auth']=$this->auth;
+                $_SESSION['user']=$username;
+                setcookie('user',$username,time()+10);
 //                echo 'loginsubmit _SESSION'.$_SESSION['auth'];
                 return true;
             }else{
@@ -22,23 +22,28 @@
             }
         }
 
-        public function getauth(){
+        public function getUser(){
+            $this->auth = $_COOKIE['user'];
             return $this->auth;
         }
 
         public function isLogin(){
-//            echo 'isLogin() _SESSION='.$_SESSION['auth'];
-            if(isset($_SESSION['auth']) && (!empty($_SESSION['auth']))){
-//                echo 'isLogin()true11';
+//            if(isset($_SESSION['user']) && (!empty($_SESSION['user']))){
+//                return true;
+//            }else{
+//                return false;
+//            }
+            if(isset($_COOKIE['user']) && !empty($_COOKIE['user'])){
                 return true;
             }else{
-//                echo 'isLogin()false22';
                 return false;
             }
+
         }
 
         public  function  logout(){
             unset($_SESSION['auth']);
+            setcookie('user');
             $this->auth='';
         }
 

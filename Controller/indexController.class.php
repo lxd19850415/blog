@@ -8,7 +8,12 @@
 
             $authobj = M('auth');
             $isLogin=$authobj->isLogin();
-            VIEW::assign(array('isLogin'=>$isLogin));
+            $user=$authobj->getUser();
+            $arr= array(
+                'isLogin'=>$isLogin,
+                'user'=>$user
+            );
+            VIEW::assign(array('loginData'=>$arr));
 
             VIEW::display('index/index.html');
         }

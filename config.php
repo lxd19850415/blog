@@ -13,9 +13,9 @@ $config=array(
         'compile_dir'=>'data/template_c'
     ),
     'dbconfig'=>array(
-        'dbhost'=>'127.0.0.1',
+        'dbhost'=>'45.56.95.147',
         'dbuser'=>'root',
-        'dbpsw'=>'root',
+        'dbpsw'=>'lxd123654',
         'dbname'=>'blog',
         'dbcharset'=>'utf8'
     )
