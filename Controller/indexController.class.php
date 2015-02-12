@@ -7,13 +7,8 @@
             VIEW::assign(array('data'=>$data));
 
             $authobj = M('auth');
-            $isLogin=$authobj->isLogin();
-            $user=$authobj->getUser();
-            $arr= array(
-                'isLogin'=>$isLogin,
-                'user'=>$user
-            );
-            VIEW::assign(array('loginData'=>$arr));
+            $loginData =$authobj->checkCookie();
+            VIEW::assign(array('loginData'=>$loginData));
 
             VIEW::display('index/index.html');
         }
@@ -23,6 +18,11 @@
             $articleModel = M('article');
             $data = $articleModel->get_article(intval($_GET['id']));
             VIEW::assign(array('article'=>$data));
+
+            $authobj = M('auth');
+            $loginData =$authobj->checkCookie();
+            VIEW::assign(array('loginData'=>$loginData));
+
             VIEW::display('index/article.html');
         }
 
@@ -39,8 +39,8 @@
                 VIEW::assign(array('data'=>$data));
 
                 $authobj = M('auth');
-                $isLogin=$authobj->isLogin();
-                VIEW::assign(array('isLogin'=>$isLogin));
+                $loginData =$authobj->checkCookie();
+                VIEW::assign(array('loginData'=>$loginData));
 
                 VIEW::display('index/login.html');
             }
@@ -48,11 +48,11 @@
         }
 
         function logout(){
-
             $authobj = M('auth');
             $authobj->logout();
-            $this->showmessaget('退出成功','');
+            header("refresh:0;url=index.php");
         }
+
         function reg(){
 
             $articleModel = M('article');
@@ -60,8 +60,8 @@
             VIEW::assign(array('data'=>$data));
 
             $authobj = M('auth');
-            $isLogin=$authobj->isLogin();
-            VIEW::assign(array('isLogin'=>$isLogin));
+            $loginData =$authobj->checkCookie();
+            VIEW::assign(array('loginData'=>$loginData));
 
             VIEW::display('index/reg.html');
         }
@@ -74,8 +74,8 @@
                 VIEW::assign(array('data'=>$data));
 
                 $authobj = M('auth');
-                $isLogin=$authobj->isLogin();
-                VIEW::assign(array('isLogin'=>$isLogin));
+                $loginData =$authobj->checkCookie();
+                VIEW::assign(array('loginData'=>$loginData));
 
                 VIEW::display('index/index.html');
             }else{
@@ -92,13 +92,20 @@
                 $data = $articleModel->add_article($_POST);
                 header("refresh:0;url=index.php");
             }else{
+                $authobj = M('auth');
+                $loginData =$authobj->checkCookie();
+                if($loginData['isLogin'] == false){
+                    $this->login();
+                    return;
+                }
                 $articleModel = M('article');
                 $data = $articleModel->get_article_list();
                 VIEW::assign(array('data'=>$data));
 
-                $authobj = M('auth');
-                $isLogin=$authobj->isLogin();
-                VIEW::assign(array('isLogin'=>$isLogin));
+//                $authobj = M('auth');
+//                $loginData =$authobj->checkCookie();
+                VIEW::assign(array('loginData'=>$loginData));
+
                 VIEW::display('index/post.html');
             }
         }
@@ -111,8 +118,8 @@
                 VIEW::assign(array('data'=>$data));
 
                 $authobj = M('auth');
-                $isLogin=$authobj->isLogin();
-                VIEW::assign(array('isLogin'=>$isLogin));
+                $loginData =$authobj->checkCookie();
+                VIEW::assign(array('loginData'=>$loginData));
 
                 VIEW::display('index/index.html');
             }else{

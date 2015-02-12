@@ -4,7 +4,6 @@
 
         public function loginsubmit(){
             if(empty($_POST['name']) || empty($_POST['password'])){
-//                echo 'loginsubmit 1 false';
                 return false;
             }
 
@@ -13,32 +12,31 @@
             $this->auth=$this->checkuser($username,$password);
             if($this->auth){
                 $_SESSION['user']=$username;
-                setcookie('user',$username,time()+10);
-//                echo 'loginsubmit _SESSION'.$_SESSION['auth'];
+                setcookie('user',$username,time()+10 * 60);
                 return true;
             }else{
-//                echo 'loginsubmit false';
                 return false;
             }
         }
 
         public function getUser(){
-            $this->auth = $_COOKIE['user'];
-            return $this->auth;
+            return $_COOKIE['user'];
         }
 
-        public function isLogin(){
-//            if(isset($_SESSION['user']) && (!empty($_SESSION['user']))){
-//                return true;
-//            }else{
-//                return false;
-//            }
+        public function checkCookie(){
             if(isset($_COOKIE['user']) && !empty($_COOKIE['user'])){
-                return true;
+                $arr= array(
+                    'isLogin'=>true,
+                    'user'=>$_COOKIE['user']
+                );
             }else{
-                return false;
+                unset($_SESSION['auth']);
+                $arr= array(
+                    'isLogin'=>false,
+                    'user'=>''
+                );
             }
-
+            return $arr;
         }
 
         public  function  logout(){

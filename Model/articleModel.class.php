@@ -44,12 +44,13 @@
                 }
         }
 
-
         function add_article($data){
             extract($data);
             $createtime=date("Y-m-d H:i:s");
             $updatetime=date("Y-m-d H:i:s");
-            $auth='admin';
+
+            $authobj = M('auth');
+            $auth=$authobj->getUser();
             if(empty($title) || empty($content)  ||empty($type)){
                 return 0;
             }else{
