@@ -80,8 +80,9 @@
                 VIEW::display('index/index.html');
             }else{
                 $authobj = M('auth');
-                $isLogin=$authobj->isLogin();
-                VIEW::assign(array('isLogin'=>$isLogin));
+                $loginData =$authobj->checkCookie();
+                VIEW::assign(array('loginData'=>$loginData));
+
                 VIEW::display('index/search.html');
             }
         }
@@ -124,8 +125,8 @@
                 VIEW::display('index/index.html');
             }else{
                 $authobj = M('auth');
-                $isLogin=$authobj->isLogin();
-                VIEW::assign(array('isLogin'=>$isLogin));
+                $loginData =$authobj->checkCookie();
+                VIEW::assign(array('loginData'=>$loginData));
                 VIEW::display('index/assort.html');
             }
         }
