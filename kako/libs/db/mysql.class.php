@@ -81,7 +81,6 @@ class mysql{
      */
     function insert($table,$arr){
         //$sql="insert into 表明(多个字段) values(多个值)";
-
         foreach($arr as $key=>$value){
             $value=mysql_real_escape_string($value);
 //            $keyArr[]="'".$key."'";

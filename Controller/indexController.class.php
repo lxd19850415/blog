@@ -23,8 +23,31 @@
             $loginData =$authobj->checkCookie();
             VIEW::assign(array('loginData'=>$loginData));
 
+            $replyobj = M('reply');
+            $replyData =$replyobj->findAll_by_articleid($_GET['id']);
+            VIEW::assign(array('replies'=>$replyData));
+
+//            var_dump($replyData);
             VIEW::display('index/article.html');
         }
+
+
+
+        function showLogin(){
+            $articleModel = M('article');
+            $data = $articleModel->get_article_list();
+            VIEW::assign(array('data'=>$data));
+
+            $authobj = M('auth');
+            $loginData =$authobj->checkCookie();
+
+            VIEW::assign(array('loginData'=>$loginData));
+
+            VIEW::display('index/login.html');
+
+
+        }
+
 
         function login(){
 
@@ -34,15 +57,7 @@
                     header("refresh:0;url=index.php");
                 }
             }else{
-                $articleModel = M('article');
-                $data = $articleModel->get_article_list();
-                VIEW::assign(array('data'=>$data));
-
-                $authobj = M('auth');
-                $loginData =$authobj->checkCookie();
-                VIEW::assign(array('loginData'=>$loginData));
-
-                VIEW::display('index/login.html');
+                $this->showLogin();
             }
 
         }
@@ -97,6 +112,38 @@
                 $loginData =$authobj->checkCookie();
                 if($loginData['isLogin'] == false){
                     $this->login();
+                    return;
+                }
+                $articleModel = M('article');
+                $data = $articleModel->get_article_list();
+                VIEW::assign(array('data'=>$data));
+
+//                $authobj = M('auth');
+//                $loginData =$authobj->checkCookie();
+                VIEW::assign(array('loginData'=>$loginData));
+
+                VIEW::display('index/post.html');
+            }
+        }
+
+        function reply(){
+            if(!empty($_POST)){
+                $authobj = M('auth');
+                $loginData =$authobj->checkCookie();
+                if($loginData['isLogin'] == false){
+                    $this->showLogin();
+                    return;
+                }
+
+                $replyModel = M('reply');
+                $data = $replyModel->add_reply($_POST);
+
+                header("refresh:0;url=index.php");
+            }else{
+                $authobj = M('auth');
+                $loginData =$authobj->checkCookie();
+                if($loginData['isLogin'] == false){
+                    $this->showLogin();
                     return;
                 }
                 $articleModel = M('article');

@@ -31,6 +31,49 @@
 
     </div>
 
+
+<script type="text/javascript">
+
+    function isNull( str ){
+        if ( str == "" )
+        {
+            return true;
+        }
+        var regu = "^[ ]+$";
+        var re = new RegExp(regu);
+        return re.test(str);
+    }
+
+    function AntiSqlValid(str ) {
+        var sUrl=str.toLowerCase();
+        var sQuery=sUrl.substring(sUrl.indexOf("=")+1);
+
+        var re = /select|update|delete|exec|count|'|"|=|;|>|<|%/i;
+        if (re.test(sQuery)) {
+            alert("请您不要在参数中输入特殊字符和SQL关键字！"); //注意中文乱码
+            return false;
+        }
+        return true;
+    }
+
+    function checkPost(){
+        var form1 = window.document.getElementById("formPost");//获取form1对象
+        var postEdit1 = window.document.getElementById("postEdit_").value;//获取form1对象
+        if ( isNull(postEdit1 ) )
+        {
+            alert("标题或内容不能为空！");
+        }
+        else
+        {
+            if(AntiSqlValid(postEdit1))
+            {
+                form1.submit();
+            }
+        }
+    }
+
+</script>
+
     <div class="center">
         <article>
 
@@ -45,6 +88,26 @@
 
 
         </article>
+
+        <div class ="replies">
+            {foreach $replies as $reply}
+            <p class="info">
+                作者：<a href="#">{$reply.author}</a> |
+                日期：{$reply.createtime}
+            </p>
+            <p>{$reply.content}</p>
+            <hr>
+            {/foreach}
+        </div>
+
+        <div class ="replyTextEdit">
+
+            <form method="post" action="/blog/index.php?controller=index&method=reply&articleid={$article.id}" id="formPost">
+                <textarea name="content" class="replyEdit" id="postEdit_" onmouseover="this.style.borderColor='black';this.style.backgroundColor='plum'" onmouseout="this.style.borderColor='black';this.style.backgroundColor='#ffffff'"></textarea>
+                <input class="submitBtn" type="button" onClick="checkPost()" value="回复">
+            </form>
+        </div>
+
     </div>
 
     <div class="companybg">

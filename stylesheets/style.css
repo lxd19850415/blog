@@ -38,6 +38,7 @@ article a:hover{color:#333333;text-decoration:underline;}
 .loginAccountEdit{width:320px;height:32px;font-size:16px;border-width:1px;border-color:black;margin:5px 0;}
 
 .postEdit{width:600px;height:360px;font-size:16px;border-width:1px;border-color:black;margin:5px 0;}
+.replyEdit{width:600px;height:80px;font-size:16px;border-width:1px;border-color:black;margin:5px 0;}
 .submitBtn{
 	font-family: "tahoma","Microsoft YaHei";
 	font-size: 14pt;color: #003399;
