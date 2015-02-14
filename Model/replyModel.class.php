@@ -17,6 +17,10 @@
             if(empty($content)){
                 return 0;
             }else{
+
+                $articleobj = M('article');
+                $articleobj->increase_reply_count($articleid);
+
                 $content=addslashes($content);
                 $data = array(
                     'articleid'=>$articleid,

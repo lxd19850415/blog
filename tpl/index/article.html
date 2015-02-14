@@ -90,6 +90,7 @@
         </article>
 
         <div class ="replies">
+            {if $replies neq ""}
             {foreach $replies as $reply}
             <p class="info">
                 作者：<a href="#">{$reply.author}</a> |
@@ -98,6 +99,7 @@
             <p>{$reply.content}</p>
             <hr>
             {/foreach}
+            {/if}
         </div>
 
         <div class ="replyTextEdit">

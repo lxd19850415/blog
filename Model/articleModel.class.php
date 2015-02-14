@@ -90,10 +90,27 @@
             }
         }
 
+        function increase_reply_count($id){
+            $id=intval($id);
+            $sql='select * from '.$this->_table.' where id = "'.$id.'"';
+            $data = DB::findOne($sql);
+            $count=$data['replycount'];
+            $count=intval($count,10);
+            $count++;
+            $arr=array(
+                'replycount'=>$count
+            );
+            $where=' id ="'.$id.'"';
+            return DB::update($this->_table,$arr,$where);
+        }
+
         function formate_article($data){
             foreach($data as $k=>$article){
                 $data[$k]['content']=mb_substr(strip_tags($data[$k]['content']),0,200);
                 $data[$k]['type']=$this->convertType($data[$k]['type']);
+                if(empty($data[$k]['replycount'])){
+                    $data[$k]['replycount']=0;
+                }
             }
             return  $data;
         }

@@ -106,7 +106,7 @@ class mysql{
 
         foreach($arr as $key=>$value){
             $value=mysql_real_escape_string($value);
-            $keyAndValueArr[]="`".$key."`='".$value."'";
+            $keyAndValueArr[]=$key."='".$value."'";
 
         }
         $keyAndValues=implode(",",$keyAndValueArr);
