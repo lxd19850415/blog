@@ -74,19 +74,19 @@
                 return '其他';
             }
             else if($type=='1'){
-                return '计算机';
+                return 'PHP';
             }
             else if($type=='2'){
-                return '生物';
+                return 'cocos2d-x';
             }
             else if($type=='3'){
-                return '化学';
+                return 'android';
             }
             else if($type=='4'){
-                return '数学';
+                return 'IOS';
             }
             else if($type=='5'){
-                return '金融';
+                return '笑话';
             }
         }
 
