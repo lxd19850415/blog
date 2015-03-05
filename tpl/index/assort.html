@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>朝闻道-登录</title>
-    <link rel='stylesheet' href='/blog/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
    
@@ -12,20 +12,20 @@
 
   	<div class="navbg">
       <div class="navbg2">
-    		<div class="nav_"><a class="nav_a" title="主页" href="/blog/index.php">主页</a></div>
-		  <div class="nav_"><a class="nav_a" title="搜索" href="/blog/index.php?controller=index&method=search">搜索</a></div>
-		  <div class="nav_"><a class="nav_a" title="分类" href="/blog/index.php?controller=index&method=assort">分类</a></div>
+    		<div class="nav_"><a class="nav_a" title="主页" href="/index.php">主页</a></div>
+		  <div class="nav_"><a class="nav_a" title="搜索" href="/index.php?controller=index&method=search">搜索</a></div>
+		  <div class="nav_"><a class="nav_a" title="分类" href="/index.php?controller=index&method=assort">分类</a></div>
 
 		  {if $loginData.isLogin eq 'true'}
-		  <div class='nav_'><a class='nav_a' title='发表' href='/blog/index.php?controller=index&method=post'>发表</a></div>
+		  <div class='nav_'><a class='nav_a' title='发表' href='/index.php?controller=index&method=post'>发表</a></div>
 		  {/if}
 	  </div>
 
 		{if $loginData.isLogin eq 'true'}
-		<div class='l'><a title='登出' href='/blog/index.php?controller=index&method=logout'>登出</a></div>
+		<div class='l'><a title='登出' href='/index.php?controller=index&method=logout'>登出</a></div>
 		{else}
-		<div class='l'><a title='登录' href='/blog/index.php?controller=index&method=login'>登录</a></div>
-		<div class='l'><a title='注册' href='/blog/index.php?controller=index&method=reg'>注册</a></div>
+		<div class='l'><a title='登录' href='/index.php?controller=index&method=login'>登录</a></div>
+		<div class='l'><a title='注册' href='/index.php?controller=index&method=reg'>注册</a></div>
 		{/if}
   	</div>
 
@@ -41,29 +41,29 @@
 
 		<div class="frame_1">
 			<div class="frame_1_1">
-				<div class="min"><a href="/blog/index.php?controller=index&method=assort&type=1"><img src="images/index1.jpg"></a></div>
-				<div class="min"><a href="/blog/index.php?controller=index&method=assort&type=2"><img src="images/index2.jpg"></a></div>
-				<div class="max"><a href="/blog/index.php?controller=index&method=assort&type=3"><img src="images/index3.jpg"></a></div>
-				<div class="max"><a href="/blog/index.php?controller=index&method=assort&type=4"><img src="images/index4.jpg"></a></div>
+				<div class="min"><a href="/index.php?controller=index&method=assort&type=1"><img src="images/index1.jpg"></a></div>
+				<div class="min"><a href="/index.php?controller=index&method=assort&type=2"><img src="images/index2.jpg"></a></div>
+				<div class="max"><a href="/index.php?controller=index&method=assort&type=3"><img src="images/index3.jpg"></a></div>
+				<div class="max"><a href="/index.php?controller=index&method=assort&type=4"><img src="images/index4.jpg"></a></div>
 			</div>
 			<div class="frame_1_1">
-				<div class="min"><a href="/blog/index.php?controller=index&method=assort&type=4"><img src="images/index5.jpg"></a></div>
-				<div class="min"><a href="/blog/index.php?controller=index&method=assort&type=4"><img src="images/index1.jpg"></a></div>
-				<div class="max"><a href="/blog/index.php?controller=index&method=assort&type=4"><img src="images/index7.jpg"></a></div>
-				<div class="max"><a href="/blog/index.php?controller=index&method=assort&type=4"><img src="images/index3.jpg">></a></div>
+				<div class="min"><a href="/index.php?controller=index&method=assort&type=4"><img src="images/index5.jpg"></a></div>
+				<div class="min"><a href="/index.php?controller=index&method=assort&type=4"><img src="images/index1.jpg"></a></div>
+				<div class="max"><a href="/index.php?controller=index&method=assort&type=4"><img src="images/index7.jpg"></a></div>
+				<div class="max"><a href="/index.php?controller=index&method=assort&type=4"><img src="images/index3.jpg">></a></div>
 			</div>
 			<div class="frame_1_1">
-				<div class="max"><a href="/blog/assort.php?type=4"><img src="images/index3.jpg"></a></div>
+				<div class="max"><a href="/assort.php?type=4"><img src="images/index3.jpg"></a></div>
 				<div class="min"></div>
 				<div class="min"></div>
-				<div class="min"><a href="/blog/assort.php?type=4"><img src="images/index1.jpg"></a></div>
-				<div class="min"><a href="/blog/assort.php?type=4"><img src="images/index1.jpg"></a></div>
+				<div class="min"><a href="/assort.php?type=4"><img src="images/index1.jpg"></a></div>
+				<div class="min"><a href="/assort.php?type=4"><img src="images/index1.jpg"></a></div>
 			</div>
 			<div class="frame_1_1">
-				<div class="max"><a href="/blog/assort.php?type=4"><img src="images/index12.jpg"></a></div>
-				<div class="max"><a href="/blog/assort.php?type=4"><img src="images/index13.jpg"></a></div>
-				<div class="min"><a href="/blog/assort.php?type=4"><img src="images/index14.jpg"></a></div>
-				<div class="min"><a href="/blog/assort.php?type=4"><img src="images/index2.jpg"></a></div>
+				<div class="max"><a href="/assort.php?type=4"><img src="images/index12.jpg"></a></div>
+				<div class="max"><a href="/assort.php?type=4"><img src="images/index13.jpg"></a></div>
+				<div class="min"><a href="/assort.php?type=4"><img src="images/index14.jpg"></a></div>
+				<div class="min"><a href="/assort.php?type=4"><img src="images/index2.jpg"></a></div>
 			</div>
 		</div>
 
