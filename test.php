@@ -1,49 +1,33 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>测试</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-
-  	<header>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  	</header>
-
 
 <?php
-    $myServer= 'localhost'; //主机
-    $myUser= 'root'; //用户名
-  $myPass= 'root'; //密码
+$myServer= 'localhost'; //主机
+$myUser= 'root'; //用户名
+  $myPass= 'lxd123654'; //密码
   $myDB= 'blog'; //MSSQL库名
 
-  $dsn = "mysql:host=".$myServer.";dbname=".$myDB;
 $strsql="SELECT * FROM article";
+echo $strsql;
+$con = mysql_connect($myServer,$myUser,$myPass) or die("数据库链接失败！");;
+//echo '11111111';
+//var_dump($con);
+if(!$con)
+{
+    echo '数据库连接错误：'.mysql_error();
+}
+else{
 
-//  $db = new PDO($dsn, $myUser, $myPass);
-
-
-try {
-    $db = new PDO($dsn, $myUser, $myPass);
-} catch (PDOException $e) {
-    print "Error: " . $e->getMessage() . "<br/>";
-    die();
+    echo '数据库连接成功';
 }
 
-echo $strsql;
-     // 从表中提取信息的sql语句
-    $db->query("set names utf8");
+mysql_select_db($myDB,$con);
+mysql_query("set names utf8");
+$query = mysql_query($strsql);
+var_dump($query);
+$data =mysql_fetch_row($query);
+var_dump($data);
+echo $data[0]['id'].'--'.$data[0]['title'].'--'.$data[0]['content'].'--'.$data[0]['createtime'].'--'.$data[0]['updatetime'].'--';
 
-
-    $rs = $db->query($strsql);
-    while($row = $rs->fetch()){
-        print_r($row['id'].$row['title'].$row['content'].$row['createtime'].$row['updatetime']);
-    }
-
+//echo phpinfo();
 ?>
 
 
-
-
-  </body>
-</html>
