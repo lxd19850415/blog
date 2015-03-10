@@ -85,11 +85,9 @@ function checkPost(){
   
     <select name="type">
       <option value="0" selected="">请选择类型</option>
-      <option value="1">计算机</option>
-      <option value="2">生物</option>
-      <option value="3">物理</option>
-      <option value="4">化学</option>
-      <option value="5">金融</option>
+        {foreach $typeData as $type}
+        <option value="{$type.id}">{$type.typename}</option>
+        {/foreach}
     </select>
 
   <div class="loginAccountTitle">

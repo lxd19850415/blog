@@ -118,8 +118,10 @@
                 $data = $articleModel->get_article_list();
                 VIEW::assign(array('data'=>$data));
 
-//                $authobj = M('auth');
-//                $loginData =$authobj->checkCookie();
+                $typeobj = M('type');
+                $typeData =$typeobj->findAll_type();
+                VIEW::assign(array('typeData'=>$typeData));
+
                 VIEW::assign(array('loginData'=>$loginData));
 
                 VIEW::display('index/post.html');

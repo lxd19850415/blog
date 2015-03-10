@@ -70,23 +70,13 @@
         }
 
         function convertType($type){
-            if($type=='0'){
+            $sql='select * from type where id = "'.$type.'"';
+            $data = DB::findOne($sql);
+            if($data){
+                return $data['typename'];
+            }
+            else{
                 return '其他';
-            }
-            else if($type=='1'){
-                return 'PHP';
-            }
-            else if($type=='2'){
-                return 'cocos2d-x';
-            }
-            else if($type=='3'){
-                return 'android';
-            }
-            else if($type=='4'){
-                return 'IOS';
-            }
-            else if($type=='5'){
-                return '笑话';
             }
         }
 
