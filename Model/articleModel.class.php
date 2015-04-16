@@ -55,7 +55,7 @@
                 return 0;
             }else{
                 $title=addslashes($title);
-                $content=addslashes($content);
+//                $content=addslashes($content);
                 $type=addslashes($type);
                 $data = array(
                     'title'=>$title,
