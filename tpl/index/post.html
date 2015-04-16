@@ -3,6 +3,36 @@
   <head>
     <title>发表</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+      <!-- KindEditor BEGIN-->
+      <link rel="stylesheet" href="../../External/kindeditor/themes/default/default.css" />
+      <link rel="stylesheet" href="../../External/kindeditor/plugins/code/prettify.css" />
+      <script charset="utf-8" src="../../External/kindeditor/kindeditor.js"></script>
+      <script charset="utf-8" src="../../External/kindeditor/lang/zh_CN.js"></script>
+      <script charset="utf-8" src="../../External/kindeditor/plugins/code/prettify.js"></script>
+      <script>
+          KindEditor.ready(function(K) {
+              var editor1 = K.create('textarea[name="content1"]', {
+                  cssPath : '../../External/kindeditor/plugins/code/prettify.css',
+                  uploadJson : '../../External/kindeditor/php/upload_json.php',
+                  fileManagerJson : '../../External/kindeditor/php/file_manager_json.php',
+                  allowFileManager : true,
+                  afterCreate : function() {
+                      var self = this;
+                      K.ctrl(document, 13, function() {
+                          self.sync();
+                          K('form[name=postForm]')[0].submit();
+                      });
+                      K.ctrl(self.edit.doc, 13, function() {
+                          self.sync();
+                          K('form[name=postForm]')[0].submit();
+                      });
+                  }
+              });
+              prettyPrint();
+          });
+      </script>
+
+      <!-- KindEditor END-->
   </head>
   <body>
    
@@ -75,7 +105,7 @@ function checkPost(){
 
 </script>
 
-<form method="post" action="/index.php?controller=index&method=post" id="formPost">
+<form name="postForm"  method="post" action="/index.php?controller=index&method=post" id="formPost">
 
 	<div class="loginAccountTitle">
 		标题：
@@ -94,7 +124,7 @@ function checkPost(){
 		正文：
 	</div>
 <div>
-  <textarea name="content" class="postEdit" id="postEdit_" onmouseover="this.style.borderColor='black';this.style.backgroundColor='plum'" onmouseout="this.style.borderColor='black';this.style.backgroundColor='#ffffff'"></textarea>
+  <textarea name="content1" class="postEdit" id="postEdit_" onmouseover="this.style.borderColor='black';this.style.backgroundColor='plum'" onmouseout="this.style.borderColor='black';this.style.backgroundColor='#ffffff'"></textarea>
 </div>
 	<input class="submitBtn" type="button" onClick="checkPost()" value="发表">
 </form>
