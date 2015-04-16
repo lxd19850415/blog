@@ -11,7 +11,7 @@
       <script charset="utf-8" src="../../External/kindeditor/plugins/code/prettify.js"></script>
       <script>
           KindEditor.ready(function(K) {
-              var editor1 = K.create('textarea[name="content1"]', {
+              var editor1 = K.create('textarea[name="content"]', {
                   cssPath : '../../External/kindeditor/plugins/code/prettify.css',
                   uploadJson : '../../External/kindeditor/php/upload_json.php',
                   fileManagerJson : '../../External/kindeditor/php/file_manager_json.php',
@@ -26,6 +26,9 @@
                           self.sync();
                           K('form[name=postForm]')[0].submit();
                       });
+                  },
+                  afterBlur:function(){
+                      this.sync();
                   }
               });
               prettyPrint();
@@ -90,13 +93,15 @@ function checkPost(){
 	var form1 = window.document.getElementById("formPost");//获取form1对象
 	var title1 = window.document.getElementById("title_").value;//获取form1对象
 	var postEdit1 = window.document.getElementById("postEdit_").value;//获取form1对象
+
 	if ( isNull(title1 ) || isNull(postEdit1 ) )
 	{
 		alert("标题或内容不能为空！");
 	} 
 	else
 	{
-		if(AntiSqlValid(title1) && AntiSqlValid(postEdit1))
+//        if(AntiSqlValid(title1) && AntiSqlValid(postEdit1))
+        if(AntiSqlValid(title1))
 		{
 			form1.submit();
 		}
@@ -124,7 +129,7 @@ function checkPost(){
 		正文：
 	</div>
 <div>
-  <textarea name="content1" class="postEdit" id="postEdit_" onmouseover="this.style.borderColor='black';this.style.backgroundColor='plum'" onmouseout="this.style.borderColor='black';this.style.backgroundColor='#ffffff'"></textarea>
+  <textarea name="content" class="postEdit" id="postEdit_" onmouseover="this.style.borderColor='black';this.style.backgroundColor='plum'" onmouseout="this.style.borderColor='black';this.style.backgroundColor='#ffffff'"></textarea>
 </div>
 	<input class="submitBtn" type="button" onClick="checkPost()" value="发表">
 </form>
