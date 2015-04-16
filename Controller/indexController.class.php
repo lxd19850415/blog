@@ -69,16 +69,26 @@
         }
 
         function reg(){
+            if(!empty($_POST)){
+                $mobj = M('user');
+                $data = $mobj->regUser($_POST['name'],$_POST['password'],$_POST['email']);
+                if($data == true){
+                    header("refresh:0;url=index.php");
+                }
+                else{
+                    echo "<script type=\"text/javascript\"> alert(\"用户名注册过了！\");   </script>";
+                    header("refresh:0;url=index.php");
+                }
 
-            $articleModel = M('article');
-            $data = $articleModel->get_article_list();
-            VIEW::assign(array('data'=>$data));
+            }else{
+                $authobj = M('auth');
+                $loginData =$authobj->checkCookie();
+                VIEW::assign(array('loginData'=>$loginData));
 
-            $authobj = M('auth');
-            $loginData =$authobj->checkCookie();
-            VIEW::assign(array('loginData'=>$loginData));
+                VIEW::display('index/reg.html');
+            }
 
-            VIEW::display('index/reg.html');
+
         }
 
         function search(){
