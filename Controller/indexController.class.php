@@ -69,6 +69,14 @@
         }
 
         function reg(){
+
+            if (defined('DISABLE_REG'))
+            {
+                echo "<script type=\"text/javascript\"> alert(\"暂未开放注册！\");   </script>";
+                header("refresh:0;url=index.php");
+                return;
+            }
+
             if(!empty($_POST)){
                 $mobj = M('user');
                 $data = $mobj->regUser($_POST['name'],$_POST['password'],$_POST['email']);
