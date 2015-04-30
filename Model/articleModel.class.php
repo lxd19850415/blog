@@ -18,11 +18,39 @@
                 return array();
             }else{
                 $id=intval($id);
+
+                $this->add_article_view_count($id);
+
                 $sql='select * from '.$this->_table.' where id = "'.$id.'"';
                 $data = DB::findOne($sql);
                 return $this->formate_article_only_type($data);
             }
         }
+
+        function add_article_view_count($id){
+            if(empty($id)){
+                return array();
+            }else{
+                $id=intval($id);
+
+                $sql='select * from '.$this->_table.' where id = "'.$id.'"';
+                $data = DB::findOne($sql);
+
+                $viewCount = $data['viewcount'];
+
+                if($viewCount){
+                    $viewCount = $viewCount + 1;
+                }else{
+                    $viewCount = 1;
+                }
+                $arr=array(
+                    'viewcount'=>$viewCount
+                );
+                $where=' id ="'.$id.'"';
+                return DB::update($this->_table,$arr,$where);
+            }
+        }
+
 
         function search_article($keyword){
             if (empty($keyword)) {
@@ -63,7 +91,9 @@
                     'type'=>$type,
                     'author'=>$auth,
                     'createtime'=>$createtime,
-                    'updatetime'=>$updatetime
+                    'updatetime'=>$updatetime,
+                    'replycount'=>0,
+                    'viewcount'=>0
                 );
                 return  DB::insert('article',$data);
             }
