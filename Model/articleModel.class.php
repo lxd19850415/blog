@@ -8,7 +8,17 @@
         }
 
         function get_article_list(){
-            $sql='select * from '.$this->_table.' order by updatetime desc';
+//            $sql='select * from '.$this->_table.' order by updatetime desc';
+//            $data = DB::findAll($sql);
+//            return $this->formate_article($data);
+            return $this->get_article_list_by_page(1);
+        }
+
+        function get_article_list_by_page($count){
+            $size = 6;
+            $start = ($count - 1) * $size;
+
+            $sql='select * from '.$this->_table.' order by updatetime desc limit '.$start.','.$size;
             $data = DB::findAll($sql);
             return $this->formate_article($data);
         }
@@ -138,6 +148,17 @@
         function formate_article_only_type($data){
                 $data['type']=$this->convertType($data['type']);
             return  $data;
+        }
+
+        function get_article_count(){
+            $sql='select count(*) as count from '.$this->_table;
+            $data = DB::query($sql);
+            if($data){
+                return mysql_fetch_assoc($data)['count'];
+            }
+            else{
+                return 0;
+            }
         }
 
 

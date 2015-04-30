@@ -58,6 +58,30 @@
 
 
         </article>
+        <div>
+            <a href="/index.php?page=1">首页</a>
+
+            {if $pagedata.hasPrePage neq ''}
+            <a href="/index.php?page={$pagedata.hasPrePage}">上一页</a>
+            {/if}
+
+            {if $pagedata.hasPreDot eq 'true'}
+            ...
+            {/if}
+
+            {foreach $pagedata.pageNum as $pageN}
+                <a href="/index.php?page={$pageN}">{$pageN}</a>
+            {/foreach}
+
+            {if $pagedata.hasNextDot eq 'true'}
+            ...
+            {/if}
+
+            {if $pagedata.hasNextPage neq ''}
+            <a href="/index.php?page={$pagedata.hasNextPage}">下一页</a>
+            {/if}
+            <a href="/index.php?page={$pagedata.pageLast}">尾页</a>
+        </div>
     </div>
 
     <div class="companybg">

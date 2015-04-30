@@ -3,8 +3,93 @@
         function index(){
 
             $articleobj = M('article');
-            $data = $articleobj->get_article_list();
-            VIEW::assign(array('data'=>$data));
+            $pageN = 1;
+            if($_GET['page'] != null){
+                $pageN = $_GET['page'];
+
+            }
+
+            {
+
+                $data = $articleobj->get_article_list_by_page($pageN);
+                VIEW::assign(array('data'=>$data));
+
+//                $pageN = 3;
+
+                $pageSize = 6;
+
+
+
+                $maxShowPageCount = 2 + 1 + 2;
+                $halfMaxPageCount = floor($maxShowPageCount / 2);
+                $allArticleCount = $articleobj->get_article_count();
+                $realPageCount = floor($allArticleCount / $pageSize);
+                if($allArticleCount % $pageSize != 0){
+                    $realPageCount++;
+                }
+//                echo $pageN;
+//                echo '<br/>';
+//                echo $allArticleCount ;
+//                echo '<br/>';
+//                echo $realPageCount ;
+//                echo '<br/>';
+//                echo $halfMaxPageCount ;
+//                return;
+                $prePage = null;
+                $preDot = false;
+                $nextPage = null;
+                $nextDot = false;
+
+
+                $pageNum=array();
+
+                if($pageN - $halfMaxPageCount > 1){
+                    $preDot = true;
+
+                }
+                if($pageN  > 1){
+                    $prePage = $pageN - 1;
+                }
+                if($pageN  < $realPageCount){
+                    $nextPage = $pageN + 1;
+                }
+
+                if($pageN + $halfMaxPageCount < $realPageCount){
+                    $nextDot = true;
+                }
+
+                if($realPageCount < $maxShowPageCount){
+                    //实际页数不足最大可以显示的，就按照实际页数
+                    for($i=0;$i<$realPageCount;$i++){
+                        $pageNum[$i]= $i + 1;
+                    }
+                }else{
+                    if($pageN - $halfMaxPageCount <= 1 ){
+
+                        for($i=0;$i<$maxShowPageCount;$i++){
+                            $pageNum[$i]= $i + 1;
+                        }
+                    }
+                    if($pageN + $halfMaxPageCount >= $realPageCount){
+
+                        for($i=0;$i<$maxShowPageCount;$i++){
+                            $pageNum[$i]= $realPageCount - $maxShowPageCount + $i + 1;
+                        }
+                    }
+                }
+
+                $page=array(
+                    'hasPrePage'=>$prePage,
+                    'hasPreDot'=>$preDot,
+                    'hasNextDot'=>$nextDot,
+                    'hasNextPage'=>$nextPage,
+                    'pageLast'=>$realPageCount,
+                    'pageNum'=>$pageNum,
+                );
+//                var_dump($page);
+                VIEW::assign(array('pagedata'=>$page));
+            }
+
 
             $authobj = M('auth');
             $loginData =$authobj->checkCookie();
