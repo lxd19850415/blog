@@ -86,8 +86,10 @@
                 回复：{$article.replycount}
             </p>
             <p>{$article.content}</p>
-            <hr>
 
+            <br/>
+            <hr>
+            <br/>
 
         </article>
 
@@ -99,11 +101,15 @@
                 日期：{$reply.createtime}
             </p>
             <p>{$reply.content}</p>
+            <br/>
             <hr>
+            <br/>
             {/foreach}
             {/if}
         </div>
 
+
+        {if $loginData.isLogin eq 'true'}
         <div class ="replyTextEdit">
 
             <form method="post" action="/index.php?controller=index&method=reply&articleid={$article.id}" id="formPost">
@@ -111,6 +117,14 @@
                 <input class="submitBtn" type="button" onClick="checkPost()" value="回复">
             </form>
         </div>
+
+        {else}
+        您还未登录，无法回复，点击下面
+        <div><a title='登录' href='/index.php?controller=index&method=login'>登录</a>
+        或者
+        <a title='注册' href='/index.php?controller=index&method=reg'>注册</a></div>
+        {/if}
+        <br/>
 
     </div>
 
