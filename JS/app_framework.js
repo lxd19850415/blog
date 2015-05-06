@@ -6,7 +6,7 @@ var pressPos={};
 
 var mainDirector = null;
 
-var screenW = 720;
+var screenW = 964;
 var screenH = 400;
 
 function Director(){

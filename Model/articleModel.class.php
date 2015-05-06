@@ -162,6 +162,12 @@
         }
 
 
+        function delete_article($id){
+            $id=intval($id);
+            $sqlWhere=' id = "'.$id.'"';
+            DB::del($this->_table,$sqlWhere);
+        }
+
     }
 
 ?>

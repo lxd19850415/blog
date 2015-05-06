@@ -24,16 +24,28 @@
         }
 
         public function checkCookie(){
+
             if(isset($_COOKIE['user']) && !empty($_COOKIE['user'])){
+
+                $adminobj=M('user');
+                $auth=$adminobj->findOne_by_username($_COOKIE['user']);
+
+                $isAdmin =false;
+                if($auth['auth'] == 100){
+                    $isAdmin = true;
+                }
+
                 $arr= array(
                     'isLogin'=>true,
-                    'user'=>$_COOKIE['user']
+                    'user'=>$_COOKIE['user'],
+                    'isAdmin'=>$isAdmin,
                 );
             }else{
                 unset($_SESSION['auth']);
                 $arr= array(
                     'isLogin'=>false,
-                    'user'=>''
+                    'user'=>'',
+                    'isAdmin'=>'',
                 );
             }
             return $arr;
