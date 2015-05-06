@@ -17,7 +17,9 @@
             $data = array(
                 'account'=>$username,
                 'password'=>md5($password),
-                'email'=>$email
+                'email'=>$email,
+                'time'=>date("Y-m-d H:i:s"),
+                'auth'=>0,
             );
             DB::insert($this->table,$data);
             return  true;

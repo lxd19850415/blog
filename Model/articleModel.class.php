@@ -37,6 +37,14 @@
             }
         }
 
+        function get_article_list_by_user($account){
+
+            $sql='select * from '.$this->_table.' where author = "'.$account.'"';
+            $data = DB::findAll($sql);
+            return $this->formate_article($data);
+        }
+
+
         function add_article_view_count($id){
             if(empty($id)){
                 return array();

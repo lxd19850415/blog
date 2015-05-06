@@ -35,6 +35,8 @@
     {#if $loginData.isAdmin eq 'true'#}
     <div class='l'><a title='管理' href='/index.php?controller=manage&method=home'>管理</a></div>
     {#/if#}
+
+    <div class='l'><a title='账号' href='/index.php?controller=index&method=user'>{#$loginData.user#}</a></div>
     {#else#}
     <div class='l'><a title='登录' href='/index.php?controller=index&method=login'>登录</a></div>
     <div class='l'><a title='注册' href='/index.php?controller=index&method=reg'>注册</a></div>

@@ -214,6 +214,26 @@
         }
 
 
+        function user(){
+
+            if(isset($_COOKIE['user']) && !empty($_COOKIE['user'])){
+
+                $adminobj=M('user');
+                $user=$adminobj->findOne_by_username($_COOKIE['user']);
+                VIEW::assign(array('user'=>$user));
+
+                $articleModel = M('article');
+                $userArticle = $articleModel->get_article_list_by_user($_COOKIE['user']);
+                VIEW::assign(array('userArticle'=>$userArticle));
+
+                VIEW::display('index/user.html');
+
+            }else{
+
+            }
+        }
+
+
 
     }
 
