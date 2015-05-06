@@ -301,7 +301,7 @@ var Scene= Node.extend({
     onDrawEx:function(){
         //console.log("Scene onDrawEx " );
         tempContext.fillStyle="white";
-        tempContext.fillRect(0, 0, mainDirector.w, mainDirector.h);
+        tempContext.(0, 0, mainDirector.w, mainDirector.h);
     }
 });
 
@@ -385,11 +385,6 @@ function getPointOnCanvas(canvas, x, y) {
     };
 }
 
-
-function clearCanvas() {
-    tempContext.clearRect(0, 0, 500, 500)
-}
-
 function doMouseDown(event) {
     var x = event.pageX;
     var y = event.pageY;
@@ -436,27 +431,19 @@ function doMouseUp(event) {
 function doKeyDown(e) {
     var keyID = e.keyCode ? e.keyCode :e.which;
     if(keyID === 38 || keyID === 87) { // up arrow and W
-        clearCanvas();
-        y = y - 10;
-        tempContext.fillRect(x, y, 80, 40);
+
         e.preventDefault();
     }
     if(keyID === 39 || keyID === 68) { // right arrow and D
-        clearCanvas();
-        x = x + 10;
-        tempContext.fillRect(x, y, 80, 40);
+
         e.preventDefault();
     }
     if(keyID === 40 || keyID === 83) { // down arrow and S
-        clearCanvas();
-        y = y + 10;
-        tempContext.fillRect(x, y, 80, 40);
+
         e.preventDefault();
     }
     if(keyID === 37 || keyID === 65) { // left arrow and A
-        clearCanvas();
-        x = x - 10;
-        tempContext.fillRect(x, y, 80, 40);
+
         e.preventDefault();
     }
 }

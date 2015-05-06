@@ -204,6 +204,11 @@
                 $authobj = M('auth');
                 $loginData =$authobj->checkCookie();
                 VIEW::assign(array('loginData'=>$loginData));
+
+
+                $typeobj = M('type');
+                $typeData =$typeobj->findAll_type();
+                VIEW::assign(array('typeData'=>$typeData));
                 VIEW::display('index/assort.html');
             }
         }

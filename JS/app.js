@@ -31,6 +31,7 @@ function enter(){
 
     mainScene.addChild(layer);
 
+    var typeData = getAllTypeData();
     for (var i=0;i<row_count;i++){
         for (var j=0;j<col_count;j++) {
 
@@ -39,25 +40,11 @@ function enter(){
             var index = i * col_count + j;
             type = index + 1;
 
-            console.log("enter type : " + type);
+            type = typeData[index].typeid;
+            btnName = typeData[index].typename;
 
-            if(type == 1){
-                btnName = "安卓";
-            }else if(type == 2){
-                btnName = "cocos2dx";
-            }else if(type == 3){
-                btnName = "web";
-            }else if(type == 4){
-                btnName = "c/c++";
-            }else if(type == 5){
-                btnName = "lua";
-            }else if(type == 6){
-                btnName = "ios";
-            }else if(type == 7){
-                btnName = "openGL";
-            }else if(type == 8){
-                btnName = "其他";
-            }
+            console.log("enter type : " + type);
+            console.log("enter btnName : " + btnName);
 
             var btn = new ButtonDraw();
             btn.setPosition(offset_x + j * (len_x + btnW), offset_y  + i * (len_y + btnH));
