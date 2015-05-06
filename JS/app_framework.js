@@ -301,7 +301,7 @@ var Scene= Node.extend({
     onDrawEx:function(){
         //console.log("Scene onDrawEx " );
         tempContext.fillStyle="white";
-        tempContext.(0, 0, mainDirector.w, mainDirector.h);
+        tempContext.fillRect(0, 0, mainDirector.w, mainDirector.h);
     }
 });
 
