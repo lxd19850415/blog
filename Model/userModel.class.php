@@ -27,6 +27,33 @@
 
         }
 
+        function changePwd($username,$oldPassword,$password,$email){
+            $sql='select * from '.$this->table.' where account="'.$username.'" and password = "'.md5($oldPassword).'"';
+            $result = DB::findOne($sql);
+            if($result == null){
+                return false;
+            }
+            if($password && $email){
+                $data = array(
+                    'password'=>md5($password),
+                    'email'=>$email,
+                );
+            }else{
+                if($password){
+                    $data = array(
+                        'password'=>md5($password),
+                    );
+                }
+                if($email){
+                    $data = array(
+                        'email'=>$email,
+                    );
+                }
+            }
+            DB::update($this->table,$data,' account= "'.$username.'"');
+            return  true;
+        }
+
     }
 
 ?>

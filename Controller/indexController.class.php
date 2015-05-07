@@ -65,6 +65,9 @@
                 $authobj = M('auth');
                 if($authobj->loginsubmit()){
                     header("refresh:0;url=index.php");
+                }else{
+                    echo "<script type=\"text/javascript\"> alert(\"用户名或密码错误！\");   </script>";
+                    header("refresh:0;url=index.php?controller=index&method=login");
                 }
             }else{
                 $this->showLogin();
@@ -230,7 +233,50 @@
 
             }else{
 
+                $this->showLogin();
             }
+        }
+
+        function changePwd(){
+
+
+            if(!empty($_POST)){
+                $mobj = M('user');
+                $data = $mobj->changePwd($_POST['name'],$_POST['old_password'],$_POST['password'],$_POST['email']);
+                if($data == true){
+                    echo "<script type=\"text/javascript\"> alert(\"修改密码成功！\");   </script>";
+                    header("refresh:0;url=index.php?controller=index&method=user");
+                }
+                else{
+                    echo "<script type=\"text/javascript\"> alert(\"修改密码失败！\");   </script>";
+                    header("refresh:0;url=index.php?controller=index&method=changePwd");
+                }
+
+            }else{
+                $authobj = M('auth');
+                $loginData =$authobj->checkCookie();
+                VIEW::assign(array('loginData'=>$loginData));
+
+                if(isset($_COOKIE['user']) && !empty($_COOKIE['user'])){
+
+                    $adminobj=M('user');
+                    $user=$adminobj->findOne_by_username($_COOKIE['user']);
+                    VIEW::assign(array('user'=>$user));
+
+                    $articleModel = M('article');
+                    $userArticle = $articleModel->get_article_list_by_user($_COOKIE['user']);
+                    VIEW::assign(array('userArticle'=>$userArticle));
+
+                    VIEW::display('index/changePwd.html');
+
+                }else{
+
+                    $this->showLogin();
+                }
+            }
+
+
+
         }
 
 
