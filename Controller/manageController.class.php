@@ -29,7 +29,7 @@
             $articleobj = M('article');
             $articleobj->delete_article($_GET['id'] );
 
-            header("refresh:0;url=index.php");
+            header("refresh:0;url=index.php?controller=manage&method=home");
         }
 
         function editPost(){

@@ -172,10 +172,58 @@
 
         function delete_article($id){
             $id=intval($id);
+            //删除图片资源
+            $sql='select * from '.$this->_table.' where id = "'.$id.'"';
+            $data = DB::findOne($sql);
+            if($data){
+                $content = $data['content'];
+                $split = '<img';
+                $imgStringArr = explode($split,$content);
+
+                foreach ($imgStringArr as $imgString) {
+                    $matchStr = " src=\"/External/kindeditor/attached/image/";
+                    $str = strchr($imgString,$matchStr);
+                    if($str){
+                        $this->delete_file_by_article_content($str);
+                    }
+                }
+
+                foreach ($imgStringArr as $imgString) {
+                    $matchStr = " src=\"/External/kindeditor/php/../attached/image/";
+                    $str = strchr($imgString,$matchStr);
+                    if($str){
+                        $this->delete_file_by_article_content($str);
+                    }
+                }
+
+            }else{
+            }
+            //删除数据库数据
             $sqlWhere=' id = "'.$id.'"';
             DB::del($this->_table,$sqlWhere);
         }
 
+
+        function delete_file_by_article_content($str){
+            if($str){
+                $arr = explode("\"",$str);
+                $fileName = $arr[1];
+                $currentdir1=dirname(__FILE__);
+                $dir = substr($currentdir1,0,strlen($currentdir1) - strlen("/Model"));
+                $fileName = $dir.$fileName;
+                if (file_exists($fileName) == false) {
+                }else{
+                    $result = @unlink ($fileName);
+                        if ($result == false) {
+//                            echo 'file can not be delete';
+                        } else {
+//                            echo 'file  delete';
+                        }
+                }
+
+            }else{
+            }
+        }
     }
 
 ?>
